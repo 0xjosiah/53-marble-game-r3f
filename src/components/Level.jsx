@@ -1,7 +1,7 @@
-function StartBlock() {
+function StartBlock({ position = [ 0, 0, 0 ] }) {
     return (
         <>
-            <mesh position={[ 0, -0.1, 0 ]} receiveShadow>
+            <mesh position={ position } receiveShadow>
                 <boxGeometry args={[ 4, 0.2, 4 ]} />
                 <meshStandardMaterial color="limegreen" />
             </mesh>
