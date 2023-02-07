@@ -1,3 +1,5 @@
+import { useFrame } from '@react-three/fiber'
+import { useRef } from 'react'
 import * as THREE from 'three'
 
 // this is required to normalize colors if created outside r3f
@@ -37,7 +39,13 @@ function StartBlock({ position = [ 0, 0, 0 ] }) {
  * Trap block with spinner
  * @param position = vec3
  */
-function SpinnerTrapBlock({ position = [ 0, 0, 4 ] }) {
+function SpinnerTrapBlock({ position = [ 0, 0, 0 ] }) {
+    const spinner = useRef(null)
+    useFrame((state, delta) => {
+        const time = state.clock.elapsedTime
+        spinner.current.rotation.y += delta * 1.5
+    })
+
     return (
         <group position={ position }>
             
@@ -52,12 +60,13 @@ function SpinnerTrapBlock({ position = [ 0, 0, 4 ] }) {
 
             {/* spinner */}
             <mesh
+                ref={ spinner }
                 geometry={ boxGeometry }
                 material={ obstacleMat }
-                // position={}
-                scale={[ 1, .2, 1 ]}
-                receiveShadow
+                position={[ 0, .1, 0 ]}
+                scale={[ 3.5, .3, .3 ]}
                 castShadow
+                receiveShadow
             />
         </group>
     )
@@ -66,8 +75,8 @@ function SpinnerTrapBlock({ position = [ 0, 0, 4 ] }) {
 export default function Level(props) {
     return (
         <>
-            <StartBlock />
-            <SpinnerTrapBlock />
+            <StartBlock position={[ 0, 0, 4 ]} />
+            <SpinnerTrapBlock position={[ 0, 0, 0 ]} />
         </>
     )
 }
