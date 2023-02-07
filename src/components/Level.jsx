@@ -33,10 +33,41 @@ function StartBlock({ position = [ 0, 0, 0 ] }) {
     )
 }
 
+/**
+ * Trap block with spinner
+ * @param position = vec3
+ */
+function SpinnerTrapBlock({ position = [ 0, 0, 4 ] }) {
+    return (
+        <group position={ position }>
+            
+            {/* floor */}
+            <mesh
+                geometry={ boxGeometry }
+                material={ floor2Mat }
+                position={[ 0, -0.1, 0 ]}
+                scale={[ 4, 0.2, 4]}
+                receiveShadow
+            />
+
+            {/* spinner */}
+            <mesh
+                geometry={ boxGeometry }
+                material={ obstacleMat }
+                // position={}
+                scale={[ 1, .2, 1 ]}
+                receiveShadow
+                castShadow
+            />
+        </group>
+    )
+}
+
 export default function Level(props) {
     return (
         <>
             <StartBlock />
+            <SpinnerTrapBlock />
         </>
     )
 }
