@@ -1,5 +1,8 @@
 import * as THREE from 'three'
 
+// this is required to normalize colors if created outside r3f
+THREE.ColorManagement.legacyMode = false
+
 // general geometry for all boxes in scene
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
 
