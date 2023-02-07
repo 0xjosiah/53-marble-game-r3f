@@ -2,17 +2,25 @@ import * as THREE from 'three'
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
 
+/** 
+ * this is the inital start block of the game
+ * @param position = vec3
+ * 
+*/
 function StartBlock({ position = [ 0, 0, 0 ] }) {
     return (
         <group position={ position }>
+
+            {/* floor */}
             <mesh
                 geometry={ boxGeometry }
-                scale={[ 4, 0.2, 4 ]}
                 position={[ 0, -0.1, 0 ]}
+                scale={[ 4, 0.2, 4 ]}
                 receiveShadow
             >
                 <meshStandardMaterial color="limegreen" />
             </mesh>
+            
         </group>
     )
 }
