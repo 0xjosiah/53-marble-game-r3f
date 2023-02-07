@@ -1,4 +1,5 @@
 import { useFrame } from '@react-three/fiber'
+import { RigidBody } from '@react-three/rapier'
 import { useRef } from 'react'
 import * as THREE from 'three'
 
@@ -59,15 +60,17 @@ function SpinnerTrapBlock({ position = [ 0, 0, 0 ] }) {
             />
 
             {/* spinner */}
-            <mesh
-                ref={ spinner }
-                geometry={ boxGeometry }
-                material={ obstacleMat }
-                position={[ 0, .1, 0 ]}
-                scale={[ 3.5, .3, .3 ]}
-                castShadow
-                receiveShadow
-            />
+            <RigidBody type='kinematicPosition'>
+                <mesh
+                    ref={ spinner }
+                    geometry={ boxGeometry }
+                    material={ obstacleMat }
+                    position={[ 0, .1, 0 ]}
+                    scale={[ 3.5, .3, .3 ]}
+                    castShadow
+                    receiveShadow
+                />
+            </RigidBody>
         </group>
     )
 }
