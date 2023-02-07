@@ -70,7 +70,6 @@ function SpinnerTrapBlock({ position = [ 0, 0, 0 ] }) {
                     ref={ spinner }
                     geometry={ boxGeometry }
                     material={ obstacleMat }
-                    position={[ 0, .1, 0 ]}
                     scale={[ 3.5, .3, .3 ]}
                     castShadow
                     receiveShadow
