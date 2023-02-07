@@ -60,7 +60,12 @@ function SpinnerTrapBlock({ position = [ 0, 0, 0 ] }) {
             />
 
             {/* spinner */}
-            <RigidBody type='kinematicPosition'>
+            <RigidBody
+                type='kinematicPosition'
+                position={[ 0, .3, 0 ]}
+                restitution={ 0.2 }
+                friction={ 0 }
+            >
                 <mesh
                     ref={ spinner }
                     geometry={ boxGeometry }
