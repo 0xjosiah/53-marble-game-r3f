@@ -12,7 +12,6 @@ const wallMat = new THREE.MeshStandardMaterial({ color: 'slategrey' })
 /** 
  * this is the initial start block of the game
  * @param position = vec3
- * 
 */
 function StartBlock({ position = [ 0, 0, 0 ] }) {
     return (
@@ -21,12 +20,11 @@ function StartBlock({ position = [ 0, 0, 0 ] }) {
             {/* floor */}
             <mesh
                 geometry={ boxGeometry }
+                material={ floor1Mat }
                 position={[ 0, -0.1, 0 ]}
                 scale={[ 4, 0.2, 4 ]}
                 receiveShadow
-            >
-                <meshStandardMaterial color="limegreen" />
-            </mesh>
+            />
             
         </group>
     )
