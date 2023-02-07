@@ -42,9 +42,14 @@ function StartBlock({ position = [ 0, 0, 0 ] }) {
  */
 function SpinnerTrapBlock({ position = [ 0, 0, 0 ] }) {
     const spinner = useRef(null)
-    useFrame((state, delta) => {
-        const time = state.clock.elapsedTime
-        spinner.current.rotation.y += delta * 1.5
+    // this creates rotation for the rigid body of spinner
+    useFrame((state) => {
+        const time = state.clock.getElapsedTime()
+        const eulerRotation = new THREE.Euler(0, time, 0)
+        const quaternionRotation = new THREE.Quaternion()
+        quaternionRotation.setFromEuler(eulerRotation)
+        // this method only takes quaternion, thus the above conversion
+        spinner.current.setNextKinematicRotation(quaternionRotation)
     })
 
     return (
@@ -61,13 +66,13 @@ function SpinnerTrapBlock({ position = [ 0, 0, 0 ] }) {
 
             {/* spinner */}
             <RigidBody
+                ref={ spinner }
                 type='kinematicPosition'
                 position={[ 0, .3, 0 ]}
                 restitution={ 0.2 }
                 friction={ 0 }
             >
                 <mesh
-                    ref={ spinner }
                     geometry={ boxGeometry }
                     material={ obstacleMat }
                     scale={[ 3.5, .3, .3 ]}
