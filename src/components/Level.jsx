@@ -1,3 +1,7 @@
+import * as THREE from 'three'
+
+const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
+
 function StartBlock({ position = [ 0, 0, 0 ] }) {
     return (
         <group position={ position }>
