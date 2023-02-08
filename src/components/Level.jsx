@@ -139,9 +139,9 @@ function LimboTrapBlock({ position = [ 0, 0, 0 ] }) {
 export default function Level(props) {
     return (
         <>
-            <StartBlock position={[ 0, 0, 4 ]} />
-            <SpinnerTrapBlock position={[ 0, 0, 0 ]} />
-            <LimboTrapBlock position={[ 0, 0, -4 ]} />
+            <StartBlock position={[ 0, 0, 8 ]} />
+            <SpinnerTrapBlock position={[ 0, 0, 4 ]} />
+            <LimboTrapBlock position={[ 0, 0, 0 ]} />
         </>
     )
 }
