@@ -1,6 +1,6 @@
 import { useFrame } from '@react-three/fiber'
 import { RigidBody } from '@react-three/rapier'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import * as THREE from 'three'
 
 // this is required to normalize colors if created outside r3f
@@ -42,10 +42,12 @@ function StartBlock({ position = [ 0, 0, 0 ] }) {
  */
 function SpinnerTrapBlock({ position = [ 0, 0, 0 ] }) {
     const spinner = useRef(null)
+    const [ speed ] = useState(() => Math.random())
+
     // this creates rotation for the rigid body of spinner
     useFrame((state) => {
         const time = state.clock.getElapsedTime()
-        const eulerRotation = new THREE.Euler(0, time, 0)
+        const eulerRotation = new THREE.Euler(0, time * speed, 0)
         const quaternionRotation = new THREE.Quaternion()
         quaternionRotation.setFromEuler(eulerRotation)
         // this method only takes quaternion, thus the above conversion
