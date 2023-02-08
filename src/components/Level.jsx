@@ -88,11 +88,60 @@ function SpinnerTrapBlock({ position = [ 0, 0, 0 ] }) {
     )
 }
 
+/**
+ * Trap block with limbo style door
+ * @param position = vec3
+ */
+function LimboTrapBlock({ position = [ 0, 0, 0 ] }) {
+    const door = useRef(null)
+
+    // creates constant random value for each instance of this component
+    const [ speed ] = useState(() => (Math.random() + 0.2) * (Math.random() < .5 ? 1 : -1))
+
+    // this creates rotation for the rigid body of spinner
+    useFrame((state) => {
+        const time = state.clock.getElapsedTime()
+        door.current.setNextKinematicTranslation({ x: position[0], y: (position[1] + Math.sin(time) * .5) + .65, z: position[2] })
+    })
+
+    return (
+        <group position={ position }>
+            
+            {/* floor */}
+            <mesh
+                geometry={ boxGeometry }
+                material={ floor2Mat }
+                position={[ 0, -0.1, 0 ]}
+                scale={[ 4, 0.2, 4]}
+                receiveShadow
+            />
+
+            {/* spinner */}
+            <RigidBody
+                ref={ door }
+                type='kinematicPosition'
+                position={[ 0, .3, 0 ]}
+                restitution={ 0.2 }
+                friction={ 0 }
+            >
+                <mesh
+                    geometry={ boxGeometry }
+                    material={ obstacleMat }
+                    scale={[ 3.5, .3, .3 ]}
+                    castShadow
+                    receiveShadow
+                />
+            </RigidBody>
+        </group>
+    )
+}
+
 export default function Level(props) {
     return (
         <>
             <StartBlock position={[ 0, 0, 4 ]} />
             <SpinnerTrapBlock position={[ 0, 0, 0 ]} />
+            <LimboTrapBlock position={[ 0, 0, -4 ]} />
         </>
     )
 }
