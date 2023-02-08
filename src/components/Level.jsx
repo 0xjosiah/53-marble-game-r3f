@@ -44,7 +44,7 @@ function SpinnerTrapBlock({ position = [ 0, 0, 0 ] }) {
     const spinner = useRef(null)
 
     // creates constant random value for each instance of this component
-    const [ speed ] = useState(() => Math.random() + 0.2)
+    const [ speed ] = useState(() => (Math.random() + 0.2) * (Math.random() < .5 ? 1 : -1))
 
     // this creates rotation for the rigid body of spinner
     useFrame((state) => {
