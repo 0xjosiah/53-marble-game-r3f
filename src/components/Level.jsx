@@ -157,8 +157,8 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
         const time = state.clock.getElapsedTime() + timeOffset
 
         // ensures limbo trap stays consistent with component position
-        const x = position[0]
-        const y = position[1] + (Math.sin(time) + 1.15)
+        const x = position[0] + (Math.sin(time) * 1.75)
+        const y = position[1]
         const z = position[2]
 
         obstacle.current.setNextKinematicTranslation({ x, y, z })
@@ -187,7 +187,7 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
                 <mesh
                     geometry={ boxGeometry }
                     material={ obstacleMat }
-                    scale={[ 3.5, .3, .3 ]}
+                    scale={[ .5, 4, .3 ]}
                     castShadow
                     receiveShadow
                 />
