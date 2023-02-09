@@ -240,11 +240,16 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
                     material={ obstacleMat }
                     scale={[ .2, 4, .2 ]}
                 />
-                <MeshCollider type="ball">
+                <mesh
+                    geometry={ boxGeometry }
+                    material={ obstacleMat }
+                    scale={[ 1, .5, .2 ]}
+                />
+                {/* <MeshCollider type="ball">
                     <Sphere args={[0.5]} position={[0, -2, 0]}>
                         <meshPhysicalMaterial />
                     </Sphere>
-                </MeshCollider>
+                </MeshCollider> */}
             </RigidBody>
         </group>
     )
