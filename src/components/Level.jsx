@@ -101,7 +101,13 @@ function LimboTrapBlock({ position = [ 0, 0, 0 ] }) {
     // this creates rotation for the rigid body of spinner
     useFrame((state) => {
         const time = state.clock.getElapsedTime()
-        door.current.setNextKinematicTranslation({ x: position[0], y: (position[1] + Math.sin(time) * .5) + .65, z: position[2] })
+        
+        // ensures limbo trap stays consistent with component position
+        const x = position[0]
+        const y = position[1] + (Math.sin(time) + 1.15)
+        const z = position[2]
+
+        door.current.setNextKinematicTranslation({ x, y, z })
     })
 
     return (
