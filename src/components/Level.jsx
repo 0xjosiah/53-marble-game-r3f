@@ -1,5 +1,6 @@
+import { Sphere } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { RigidBody } from '@react-three/rapier'
+import { MeshCollider, RigidBody, useSphericalJoint } from '@react-three/rapier'
 import { useRef, useState } from 'react'
 import * as THREE from 'three'
 
@@ -207,44 +208,43 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
     const [ timeOffset ] = useState(() => (Math.random() * Math.PI * 2))
 
     // this creates rotation for the rigid body of spinner
-    useFrame((state) => {
-        const time = state.clock.getElapsedTime() + timeOffset
+    // useFrame((state) => {
+    //     const time = state.clock.getElapsedTime() + timeOffset
 
-        // ensures limbo trap stays consistent with component position
-        const x = position[0] + (Math.sin(time))
-        const y = position[1] + .75
-        const z = position[2]
+    //     // ensures limbo trap stays consistent with component position
+    //     const x = position[0] + (Math.sin(time))
+    //     const y = position[1] + .75
+    //     const z = position[2]
 
-        obstacle.current.setNextKinematicTranslation({ x, y, z })
-    })
+    //     obstacle.current.setNextKinematicTranslation({ x, y, z })
+    // })
+
+    const anchor = useRef(null);
+    const box = useRef(null);
+
+    useSphericalJoint(anchor, box, [
+        [0, 0, 0],
+        [0, 2, 0]
+    ])
 
     return (
-        <group position={ position }>
-            
-            {/* floor */}
-            <mesh
-                geometry={ boxGeometry }
-                material={ floor2Mat }
-                position={[ 0, -0.1, 0 ]}
-                scale={[ 4, 0.2, 4]}
-                receiveShadow
-            />
-
-            {/* obstacle */}
-            <RigidBody
-                ref={ obstacle }
-                type='kinematicPosition'
-                position={[ 0, .3, 0 ]}
-                restitution={ 0.2 }
-                friction={ 0 }
-            >
+        <group>
+            {/**
+            * We can use an empty RigidBody is created to act
+            * as a non-moving anchor
+            */}
+            <RigidBody ref={anchor} />
+            <RigidBody ref={box} position={[0, -2, 0]}>
                 <mesh
                     geometry={ boxGeometry }
                     material={ obstacleMat }
-                    scale={[ 1.5, 1.5, .3 ]}
-                    castShadow
-                    receiveShadow
+                    scale={[ .2, 4, .2 ]}
                 />
+                <MeshCollider type="ball">
+                    <Sphere args={[0.5]} position={[0, -2, 0]}>
+                        <meshPhysicalMaterial />
+                    </Sphere>
+                </MeshCollider>
             </RigidBody>
         </group>
     )
