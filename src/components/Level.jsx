@@ -229,6 +229,15 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
 
     return (
         <group>
+            {/* floor */}
+            <mesh
+                geometry={ boxGeometry }
+                material={ floor2Mat }
+                position={[ 0, -0.1, 0 ]}
+                scale={[ 4, 0.2, 4]}
+                receiveShadow
+            />
+            
             {/**
             * We can use an empty RigidBody is created to act
             * as a non-moving anchor
@@ -238,7 +247,7 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
                 <mesh
                     geometry={ boxGeometry }
                     material={ obstacleMat }
-                    scale={[ .2, 4, .2 ]}
+                    scale={[ .2, 3, .2 ]}
                 />
                 <mesh
                     geometry={ boxGeometry }
