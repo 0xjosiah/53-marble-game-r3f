@@ -310,15 +310,16 @@ function EndBlock({ position = [ 0, 0, 0 ] }) {
     )
 }
 
-export default function Level(props) {
+export default function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock ] }) {
+    // this decides the number of trap blocks
+    // const count = 5
+
+    // block available for insertion
+    // const types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock ]
+
     return (
         <>
-            <StartBlock position={[ 0, 0, 20 ]} />
-            <SpinnerTrapBlock position={[ 0, 0, 16 ]} />
-            <LimboTrapBlock position={[ 0, 0, 12 ]} />
-            <SlidingDoorTrapBlock position={[ 0, 0, 8 ]} />
-            <AxeTrapBlock position={[ 0, 0, 4 ]} />
-            <EndBlock position={[ 0, 0, 0 ]} />
+            <StartBlock position={[ 0, 0, 0 ]} />
         </>
     )
 }
