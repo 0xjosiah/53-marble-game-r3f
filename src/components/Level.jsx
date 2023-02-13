@@ -159,7 +159,7 @@ function SlidingDoorTrapBlock({ position = [ 0, 0, 0 ] }) {
         const time = state.clock.getElapsedTime() + timeOffset
 
         // ensures limbo trap stays consistent with component position
-        const x = position[0] + (Math.sin(time))
+        const x = position[0] + (Math.sin(time) * 1.25)
         const y = position[1] + .75
         const z = position[2]
 
