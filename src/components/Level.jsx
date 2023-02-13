@@ -1,7 +1,7 @@
 import { Sphere, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { MeshCollider, RigidBody, useSphericalJoint } from '@react-three/rapier'
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 // this is required to normalize colors if created outside r3f
@@ -316,6 +316,17 @@ function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingD
 
     // block available for insertion
     // const types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock ]
+
+    const blocks = useMemo(() => {
+        const blocks = []
+
+        for(let i = 0; i < count; i++) {
+            const type = types[i]
+            blocks.push(type)
+        }
+
+        return blocks
+    }, [ count, types ])
 
     return (
         <>
