@@ -310,7 +310,7 @@ function EndBlock({ position = [ 0, 0, 0 ] }) {
     )
 }
 
-export default function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock ] }) {
+function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock ] }) {
     // this decides the number of trap blocks
     // const count = 5
 
@@ -323,3 +323,5 @@ export default function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrap
         </>
     )
 }
+
+export { Level, SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock, EndBlock }
