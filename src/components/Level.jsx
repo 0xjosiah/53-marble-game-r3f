@@ -321,7 +321,7 @@ function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingD
         const blocks = []
 
         for(let i = 0; i < count; i++) {
-            const type = types[i]
+            const type = types[ Math.floor(Math.random() * types.length) ]
             blocks.push(type)
         }
 
