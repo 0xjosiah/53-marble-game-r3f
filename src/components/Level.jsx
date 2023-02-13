@@ -226,7 +226,7 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
     // ])
 
     return (
-        <group>
+        <group position={ position }>
             {/* floor */}
             <mesh
                 geometry={ boxGeometry }
@@ -264,14 +264,36 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
     )
 }
 
+/** 
+ * this is the initial start block of the game
+ * @param position = vec3
+*/
+function EndBlock({ position = [ 0, 0, 0 ] }) {
+    return (
+        <group position={ position }>
+
+            {/* floor */}
+            <mesh
+                geometry={ boxGeometry }
+                material={ floor1Mat }
+                position={[ 0, -0.1, 0 ]}
+                scale={[ 4, 0.2, 4 ]}
+                receiveShadow
+            />
+            
+        </group>
+    )
+}
+
 export default function Level(props) {
     return (
         <>
-            <StartBlock position={[ 0, 0, 16 ]} />
-            <SpinnerTrapBlock position={[ 0, 0, 12 ]} />
-            <LimboTrapBlock position={[ 0, 0, 8 ]} />
-            <SlidingDoorTrapBlock position={[ 0, 0, 4 ]} />
-            <AxeTrapBlock position={[ 0, 0, 0 ]} />
+            <StartBlock position={[ 0, 0, 20 ]} />
+            <SpinnerTrapBlock position={[ 0, 0, 16 ]} />
+            <LimboTrapBlock position={[ 0, 0, 12 ]} />
+            <SlidingDoorTrapBlock position={[ 0, 0, 8 ]} />
+            <AxeTrapBlock position={[ 0, 0, 4 ]} />
+            <EndBlock position={[ 0, 0, 0 ]} />
         </>
     )
 }
