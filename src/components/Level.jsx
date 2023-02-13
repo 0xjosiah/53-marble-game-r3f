@@ -271,11 +271,12 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
 function EndBlock({ position = [ 0, 0, 0 ] }) {
     const { scene } = useGLTF('./hamburger.glb')
     scene.children.forEach(mesh => mesh.castShadow = true)
+
     const hamburger = useRef(null)
 
     useFrame((state, delta) => {
         // const time = state.clock.getElapsedTime()
-        hamburger.current.rotation.y += delta
+        // hamburger.current.rotation.y += delta
     })
 
     return (
