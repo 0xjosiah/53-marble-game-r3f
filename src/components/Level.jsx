@@ -9,6 +9,7 @@ THREE.ColorManagement.legacyMode = false
 
 // general geometry for all boxes in scene
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
+const sphereGeometry = new THREE.SphereGeometry(.5, 16, 32)
 
 // Materials for scene
 const floor1Mat = new THREE.MeshStandardMaterial({ color: 'limegreen' })
@@ -208,24 +209,21 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
     const [ timeOffset ] = useState(() => (Math.random() * Math.PI * 2))
 
     // this creates rotation for the rigid body of spinner
-    // useFrame((state) => {
-    //     const time = state.clock.getElapsedTime() + timeOffset
+    useFrame((state) => {
+        const time = state.clock.getElapsedTime() + timeOffset
 
-    //     // ensures limbo trap stays consistent with component position
-    //     const x = position[0] + (Math.sin(time))
-    //     const y = position[1] + .75
-    //     const z = position[2]
-
-    //     obstacle.current.setNextKinematicTranslation({ x, y, z })
-    // })
+        box.current.setNextKinematicRotation(
+            new THREE.Quaternion(0, 0, (Math.sin(time)))
+          )
+    })
 
     const anchor = useRef(null);
     const box = useRef(null);
 
-    useSphericalJoint(anchor, box, [
-        [0, 0, 0],
-        [0, 2, 0]
-    ])
+    // useSphericalJoint(anchor, box, [
+    //     [0, 0, 0],
+    //     [0, 1.25, 0]
+    // ])
 
     return (
         <group>
@@ -238,27 +236,29 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
                 receiveShadow
             />
             
-            {/**
-            * We can use an empty RigidBody is created to act
-            * as a non-moving anchor
-            */}
-            <RigidBody ref={anchor} />
-            <RigidBody ref={box} position={[0, -2, 0]}>
+            <RigidBody ref={anchor} type='kinematicPosition' position={[0, 3, 0]} >
+                {/* <mesh
+                    geometry={ sphereGeometry }
+                    material={ obstacleMat }
+                    scale={[ .1, .1, .1 ]}
+                /> */}
+            </RigidBody>
+            <RigidBody
+                ref={box}
+                type='kinematicPosition'
+                position={[0, 1.5, 0]}
+            >
                 <mesh
                     geometry={ boxGeometry }
                     material={ obstacleMat }
-                    scale={[ .2, 3, .2 ]}
+                    scale={[ .2, 2.5, .2 ]}
                 />
                 <mesh
                     geometry={ boxGeometry }
                     material={ obstacleMat }
-                    scale={[ 1, .5, .2 ]}
+                    scale={[ 1.5, .5, .2 ]}
+                    position={[ 0, -1, 0 ]}
                 />
-                {/* <MeshCollider type="ball">
-                    <Sphere args={[0.5]} position={[0, -2, 0]}>
-                        <meshPhysicalMaterial />
-                    </Sphere>
-                </MeshCollider> */}
             </RigidBody>
         </group>
     )
