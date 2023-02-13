@@ -270,6 +270,7 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
 */
 function EndBlock({ position = [ 0, 0, 0 ] }) {
     const { scene } = useGLTF('./hamburger.glb')
+    scene.children.forEach(mesh => mesh.castShadow = true)
     const hamburger = useRef(null)
 
     useFrame((state, delta) => {
@@ -280,12 +281,20 @@ function EndBlock({ position = [ 0, 0, 0 ] }) {
     return (
         <group position={ position }>
             {/* reward object */}
-            <primitive
-                object={ scene }
-                ref={ hamburger }
-                scale={ .25 }
-                position={[ 0, 0, 0 ]}
-            />
+            <RigidBody
+                type='fixed'
+                colliders='hull'
+                position={[ 0, 0.25, 0 ]}
+                restitution={ 0.2 }
+                friction={ 0 }
+            >
+                <primitive
+                    ref={ hamburger }
+                    object={ scene }
+                    position={[ 0, 0, 0 ]}
+                    scale={ .2 }
+                />
+            </RigidBody>
 
             {/* floor */}
             <mesh
