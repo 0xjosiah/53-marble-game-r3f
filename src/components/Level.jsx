@@ -1,4 +1,4 @@
-import { Sphere } from '@react-three/drei'
+import { Sphere, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { MeshCollider, RigidBody, useSphericalJoint } from '@react-three/rapier'
 import { useRef, useState } from 'react'
@@ -269,8 +269,23 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
  * @param position = vec3
 */
 function EndBlock({ position = [ 0, 0, 0 ] }) {
+    const { scene } = useGLTF('./hamburger.glb')
+    const hamburger = useRef(null)
+
+    useFrame((state, delta) => {
+        // const time = state.clock.getElapsedTime()
+        hamburger.current.rotation.y += delta
+    })
+
     return (
         <group position={ position }>
+            {/* reward object */}
+            <primitive
+                object={ scene }
+                ref={ hamburger }
+                scale={ .25 }
+                position={[ 0, 0, 0 ]}
+            />
 
             {/* floor */}
             <mesh
