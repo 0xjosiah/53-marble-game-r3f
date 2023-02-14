@@ -26,7 +26,7 @@ export default function Player({  }) {
     }
 
     useEffect(() => {
-        subscribeKeys(
+        const unsubscribeJump = subscribeKeys(
             // selector fn, indicates what you want to listen to
             (state) => state.jump,
             // when above event happens, the below fn fires
@@ -34,6 +34,10 @@ export default function Player({  }) {
                 if(value) jump()
             }
         )
+
+        // subscribeKeys returns a fn to unsub, this is helpful to reduce bugs
+        // prevents a double sub if module happens to reload w/o full page reload
+        return () => unsubscribeJump()
     }, [])
     
     useFrame((state, delta) => {
