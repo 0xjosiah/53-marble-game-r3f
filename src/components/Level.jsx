@@ -316,8 +316,8 @@ function EndBlock({ position = [ 0, 0, 0 ] }) {
 function Bounds({ length = 1 }) {
     return (
         <>
-            {/* right wall */}
             <RigidBody type='fixed'>
+                {/* right wall */}
                 <mesh
                     geometry={ boxGeometry }
                     material={ wallMat }
@@ -325,10 +325,8 @@ function Bounds({ length = 1 }) {
                     position={[ 2.15, 0.8, -(length * 2) + 2 ]}
                     castShadow
                 />
-            </RigidBody>
 
-            {/* left wall */}
-            <RigidBody type='fixed'>
+                {/* left wall */}
                 <mesh
                     geometry={ boxGeometry }
                     material={ wallMat }
@@ -337,10 +335,8 @@ function Bounds({ length = 1 }) {
                     // no castshadow due to sun pos
                     receiveShadow
                 />
-            </RigidBody>
 
-            {/* back wall */}
-            <RigidBody type='fixed'>
+                {/* back wall */}
                 <mesh
                     geometry={ boxGeometry }
                     material={ wallMat }
