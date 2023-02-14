@@ -323,6 +323,7 @@ function Bounds({ length = 1 }) {
                     material={ wallMat }
                     scale={[ .3, 2, length * 4 ]}
                     position={[ 2.15, 0.8, -(length * 2) + 2 ]}
+                    castShadow
                 />
             </RigidBody>
 
@@ -333,6 +334,20 @@ function Bounds({ length = 1 }) {
                     material={ wallMat }
                     scale={[ .3, 2, length * 4 ]}
                     position={[ -2.15, 0.8, -(length * 2) + 2 ]}
+                    // no castshadow due to sun pos
+                    receiveShadow
+                />
+            </RigidBody>
+
+            {/* back wall */}
+            <RigidBody type='fixed'>
+                <mesh
+                    geometry={ boxGeometry }
+                    material={ wallMat }
+                    scale={[ 4.6, 2, .3 ]}
+                    position={[ 0, 0.8, -(length * 4) + 1.85 ]}
+                    // no castshadow due to sun pos
+                    receiveShadow
                 />
             </RigidBody>
         </>
