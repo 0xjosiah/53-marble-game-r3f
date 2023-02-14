@@ -10,8 +10,8 @@ export default function Lights()
         const lightTarget = light.current.target
         const camPos = state.camera.position
         // much easier to get cam pos than player pos, also if move cam away from player, still want shadows
-        lightPos.z = camPos.z + 1
-        lightTarget.position.z = camPos.z
+        lightPos.z = camPos.z + 1 - 4 // -4 to move forward slightly, makes shadows more accurate
+        lightTarget.position.z = camPos.z - 4 // -4 to move forward slightly, makes shadows more accurate
         lightTarget.updateMatrixWorld()
     })
     return <>
