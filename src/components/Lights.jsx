@@ -1,13 +1,19 @@
+import { useFrame } from "@react-three/fiber"
 import { useRef } from "react"
 
 export default function Lights()
 {
-    const directionalLight = useRef()
+    const light = useRef()
 
-    
+    useFrame((state) => {
+        const lightPos = light.current.position
+        const camPos = state.camera.position
+        // much easier to get cam pos than player pos, also if move cam away from player, still want shadows
+        lightPos.z = camPos.z + 1
+    })
     return <>
         <directionalLight
-            ref={ directionalLight }
+            ref={ light }
             castShadow
             position={ [ 4, 4, 1 ] }
             intensity={ 1.5 }
