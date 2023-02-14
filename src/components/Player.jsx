@@ -13,7 +13,11 @@ export default function Player({  }) {
             (state) => state.jump,
             // when above event happens, the below fn fires
             (value) => {
-                console.log('jump?', value)
+                const impulse = { x: 0, y: 0, z: 0 }
+
+                if(value) impulse.y += .5
+                
+                player.current.applyImpulse(impulse)
             }
         )
     }, [])
