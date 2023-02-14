@@ -96,9 +96,9 @@ export default function Player({  }) {
         camTarget.copy(playerPos)
         camTarget.y += 0.25
 
-        // makes the cam movement much smoother
-        smoothCamPos.lerp(camPos, 0.1)
-        smoothCamTarget.lerp(camTarget, 0.1)
+        // makes the cam movement much smoother, delta accounts for differing frame rates on user machines
+        smoothCamPos.lerp(camPos, 5 * delta)
+        smoothCamTarget.lerp(camTarget, 5 * delta)
 
         // retrieves cam from state and copies position from declared cam pos based on player pos
         state.camera.position.copy(smoothCamPos)
