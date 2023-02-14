@@ -1,6 +1,6 @@
 import { Sphere, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { MeshCollider, RigidBody, useSphericalJoint } from '@react-three/rapier'
+import { CuboidCollider, MeshCollider, RigidBody, useSphericalJoint } from '@react-three/rapier'
 import { useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 
@@ -316,7 +316,11 @@ function EndBlock({ position = [ 0, 0, 0 ] }) {
 function Bounds({ length = 1 }) {
     return (
         <>
-            <RigidBody type='fixed'>
+            <RigidBody
+                type='fixed'
+                restitution={ 0.2 }
+                friction={ 0 }
+            >
                 {/* right wall */}
                 <mesh
                     geometry={ boxGeometry }
@@ -344,6 +348,12 @@ function Bounds({ length = 1 }) {
                     position={[ 0, 0.8, -(length * 4) + 1.85 ]}
                     // no castshadow due to sun pos
                     receiveShadow
+                />
+
+                {/* floor */}
+                <CuboidCollider
+                    args={[ 2, .1, 2 * length ]}
+                    position={[ 0, -0.1, -(length * 2) + 2 ]}
                 />
             </RigidBody>
         </>
