@@ -16,10 +16,22 @@ export default function Player({  }) {
         const impulseStrength = delta * 1
         const torqueStrength = delta * 1
 
-        if(forward) impulse.z -= impulseStrength
-        if(reverse) impulse.z += impulseStrength
-        if(starboard) impulse.x += impulseStrength
-        if(port) impulse.x -= impulseStrength
+        if(forward) {
+            impulse.z -= impulseStrength
+            torque.x -= torqueStrength
+        }
+        if(reverse) {
+            impulse.z += impulseStrength
+            torque.x += torqueStrength
+        }
+        if(starboard) {
+            impulse.x += impulseStrength
+            torque.z -= torqueStrength
+        }
+        if(port) {
+            impulse.x -= impulseStrength
+            torque.z += torqueStrength
+        }
 
         player.current.applyImpulse(impulse)
         player.current.applyTorqueImpulse(torque)
