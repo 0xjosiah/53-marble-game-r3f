@@ -20,14 +20,17 @@ export default function Player({  }) {
             impulse.z -= impulseStrength
             torque.x -= torqueStrength
         }
-        if(reverse) {
-            impulse.z += impulseStrength
-            torque.x += torqueStrength
-        }
+        
         if(starboard) {
             impulse.x += impulseStrength
             torque.z -= torqueStrength
         }
+        
+        if(reverse) {
+            impulse.z += impulseStrength
+            torque.x += torqueStrength
+        }
+        
         if(port) {
             impulse.x -= impulseStrength
             torque.z += torqueStrength
