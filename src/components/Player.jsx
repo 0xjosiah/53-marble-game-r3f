@@ -10,7 +10,7 @@ export default function Player({  }) {
     const { rapier, world } = useRapier()
     const rapierWorld = world.raw()
 
-    const [ smoothCamPos ] = useState(() => new THREE.Vector3())
+    const [ smoothCamPos ] = useState(() => new THREE.Vector3(10, 10, 10))
     const [ smoothCamTarget ] = useState(() => new THREE.Vector3())
 
     const jump = () => {
