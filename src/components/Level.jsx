@@ -301,8 +301,8 @@ function EndBlock({ position = [ 0, 0, 0 ] }) {
             <mesh
                 geometry={ boxGeometry }
                 material={ floor1Mat }
-                position={[ 0, 0, 0 ]}
                 scale={[ 4, 0.2, 4 ]}
+                position={[ 0, 0, 0 ]}
                 receiveShadow
             />
             
@@ -313,10 +313,28 @@ function EndBlock({ position = [ 0, 0, 0 ] }) {
 /**
  * these are walls for the whole level
  */
-function Bounds({ position = [0, 0, 0] }) {
+function Bounds({ length = 1 }) {
     return (
         <>
-            
+            {/* right wall */}
+            <RigidBody type='fixed'>
+                <mesh
+                    geometry={ boxGeometry }
+                    material={ wallMat }
+                    scale={[ .3, 2, length * 4 ]}
+                    position={[ 2.15, 0.8, -(length * 2) + 2 ]}
+                />
+            </RigidBody>
+
+            {/* left wall */}
+            <RigidBody type='fixed'>
+                <mesh
+                    geometry={ boxGeometry }
+                    material={ wallMat }
+                    scale={[ .3, 2, length * 4 ]}
+                    position={[ -2.15, 0.8, -(length * 2) + 2 ]}
+                />
+            </RigidBody>
         </>
     )
 }
@@ -347,6 +365,7 @@ function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingD
             { blocks.map((Block, index) => <Block key={ index } position={[ 0, 0, -(index + 1) * 4 ]} />) }
 
             <EndBlock position={[ 0, 0, -(count + 1) * 4 ]} />
+            <Bounds length={ count + 2 } />
         </>
     )
 }
