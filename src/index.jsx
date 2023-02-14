@@ -7,7 +7,14 @@ import { KeyboardControls } from '@react-three/drei'
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
-    <KeyboardControls>
+    <KeyboardControls
+        map={[
+            { name: 'forward', keys: [ 'ArrowUp', 'KeyW' ]},
+            { name: 'reverse', keys: [ 'ArrowDown', 'KeyS' ]},
+            { name: 'starboard', keys: [ 'ArrowRight', 'KeyD' ]},
+            { name: 'port', keys: [ 'ArrowLeft', 'KeyA' ]}
+        ]}
+    >
         <Canvas
             shadows
             camera={ {
