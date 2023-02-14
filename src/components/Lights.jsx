@@ -1,7 +1,13 @@
+import { useRef } from "react"
+
 export default function Lights()
 {
+    const directionalLight = useRef()
+
+    
     return <>
         <directionalLight
+            ref={ directionalLight }
             castShadow
             position={ [ 4, 4, 1 ] }
             intensity={ 1.5 }
