@@ -331,7 +331,8 @@ function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingD
     return (
         <>
             <StartBlock position={[ 0, 0, 0 ]} />
-            { blocks.map((Block, index) => <Block position={[ 0, 0, -(index + 1) * 4 ]} /> ) }
+            
+            { blocks.map((Block, index) => <Block key={ index } position={[ 0, 0, -(index + 1) * 4 ]} /> ) }
         </>
     )
 }
