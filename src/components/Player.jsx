@@ -1,7 +1,8 @@
-import { useKeyboardControls } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { RigidBody, useRapier } from "@react-three/rapier";
-import { useEffect, useRef } from "react";
+import { useKeyboardControls } from "@react-three/drei"
+import { useFrame } from "@react-three/fiber"
+import { RigidBody, useRapier } from "@react-three/rapier"
+import { useEffect, useRef } from "react"
+import * as THREE from 'three'
 
 export default function Player({  }) {
     const player = useRef(null)
@@ -41,6 +42,9 @@ export default function Player({  }) {
     }, [])
     
     useFrame((state, delta) => {
+        /**
+         * Controls
+         */
         const { forward, reverse, starboard, port } = getKeys()
 
         const impulse = { x: 0, y: 0, z: 0 }
@@ -71,6 +75,28 @@ export default function Player({  }) {
 
         player.current.applyImpulse(impulse)
         player.current.applyTorqueImpulse(torque)
+
+        /**
+         * Camera
+         */
+        // retrieves player position
+        const playerPos = player.current.translation()
+
+        const camPos = new THREE.Vector3()
+        // vec3 from rapier is compatible with vec3 from three.js (most vec3's are universal)
+        camPos.copy(playerPos)
+        camPos.z += 2.25
+        camPos.y += 0.65
+
+        // want target to be slightly ahead of player - to see rest of level
+        const camTarget = new THREE.Vector3()
+        camTarget.copy(playerPos)
+        camTarget.y += 0.25
+
+        // retrieves cam from state and copies position from declared cam pos based on player pos
+        state.camera.position.copy(camPos)
+        // tells cam to look at declared target
+        state.camera.lookAt(camTarget)
     })
 
     return (
