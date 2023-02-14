@@ -354,6 +354,8 @@ function Bounds({ length = 1 }) {
                 <CuboidCollider
                     args={[ 2, .1, 2 * length ]}
                     position={[ 0, -0.1, -(length * 2) + 2 ]}
+                    restitution={ 0.2 }
+                    friction={ 1 } // don't want infinite rotation, movement on floor
                 />
             </RigidBody>
         </>
