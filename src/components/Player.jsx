@@ -1,11 +1,22 @@
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { RigidBody } from "@react-three/rapier";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Player({  }) {
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const player = useRef(null)
+
+    useEffect(() => {
+        subscribeKeys(
+            // selector fn, indicates what you want to listen to
+            (state) => state.jump,
+            // when above event happens, the below fn fires
+            (value) => {
+                console.log('jump?', value)
+            }
+        )
+    }, [])
     
     useFrame((state, delta) => {
         const { forward, reverse, starboard, port } = getKeys()

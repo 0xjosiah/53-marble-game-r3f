@@ -13,7 +13,8 @@ root.render(
             { name: 'forward', keys: [ 'ArrowUp', 'KeyW' ]},
             { name: 'reverse', keys: [ 'ArrowDown', 'KeyS' ]},
             { name: 'starboard', keys: [ 'ArrowRight', 'KeyD' ]},
-            { name: 'port', keys: [ 'ArrowLeft', 'KeyA' ]}
+            { name: 'port', keys: [ 'ArrowLeft', 'KeyA' ]},
+            { name: 'jump', keys: [ 'Space' ]}
         ]}
     >
         <Canvas
