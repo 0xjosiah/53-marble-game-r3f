@@ -8,6 +8,7 @@ const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
     <KeyboardControls
+        // uses 'KeyW' etc. to account for non-qwerty keyboards, maps a key not its symbol
         map={[
             { name: 'forward', keys: [ 'ArrowUp', 'KeyW' ]},
             { name: 'reverse', keys: [ 'ArrowDown', 'KeyS' ]},
