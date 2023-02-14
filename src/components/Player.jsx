@@ -7,17 +7,17 @@ export default function Player({  }) {
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const player = useRef(null)
 
+    const jump = () => {
+        player.current.applyImpulse({ x: 0, y: 0.5, z: 0 })
+    }
+
     useEffect(() => {
         subscribeKeys(
             // selector fn, indicates what you want to listen to
             (state) => state.jump,
             // when above event happens, the below fn fires
             (value) => {
-                const impulse = { x: 0, y: 0, z: 0 }
-
-                if(value) impulse.y += .5
-                
-                player.current.applyImpulse(impulse)
+                if(value) jump()
             }
         )
     }, [])
