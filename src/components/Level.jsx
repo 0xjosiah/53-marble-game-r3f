@@ -310,6 +310,17 @@ function EndBlock({ position = [ 0, 0, 0 ] }) {
     )
 }
 
+/**
+ * these are walls for the whole level
+ */
+function Bounds({ position = [0, 0, 0] }) {
+    return (
+        <>
+            
+        </>
+    )
+}
+
 function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock ] }) {
     // this decides the number of trap blocks
     // const count = 5
@@ -331,8 +342,11 @@ function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingD
     return (
         <>
             <StartBlock position={[ 0, 0, 0 ]} />
-            
-            { blocks.map((Block, index) => <Block key={ index } position={[ 0, 0, -(index + 1) * 4 ]} /> ) }
+
+            {/* times 4 due to block size being 4x4 */}
+            { blocks.map((Block, index) => <Block key={ index } position={[ 0, 0, -(index + 1) * 4 ]} />) }
+
+            <EndBlock position={[ 0, 0, -(count + 1) * 4 ]} />
         </>
     )
 }
