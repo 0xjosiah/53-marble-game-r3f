@@ -1,7 +1,7 @@
 import { useKeyboardControls } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 import { RigidBody, useRapier } from "@react-three/rapier"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import * as THREE from 'three'
 
 export default function Player({  }) {
@@ -9,6 +9,9 @@ export default function Player({  }) {
     const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const { rapier, world } = useRapier()
     const rapierWorld = world.raw()
+
+    const [ smoothCamPos ] = useState(() => new THREE.Vector3())
+    const [ smoothCamTarget ] = useState(() => new THREE.Vector3())
 
     const jump = () => {
         // gets center of player obj
@@ -93,10 +96,14 @@ export default function Player({  }) {
         camTarget.copy(playerPos)
         camTarget.y += 0.25
 
+        // makes the cam movement much smoother
+        smoothCamPos.lerp(camPos, 0.1)
+        smoothCamTarget.lerp(camTarget, 0.1)
+
         // retrieves cam from state and copies position from declared cam pos based on player pos
-        state.camera.position.copy(camPos)
+        state.camera.position.copy(smoothCamPos)
         // tells cam to look at declared target
-        state.camera.lookAt(camTarget)
+        state.camera.lookAt(smoothCamTarget)
     })
 
     return (
