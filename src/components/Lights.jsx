@@ -7,9 +7,12 @@ export default function Lights()
 
     useFrame((state) => {
         const lightPos = light.current.position
+        const lightTarget = light.current.target
         const camPos = state.camera.position
         // much easier to get cam pos than player pos, also if move cam away from player, still want shadows
         lightPos.z = camPos.z + 1
+        lightTarget.position.z = camPos.z
+        lightTarget.updateMatrixWorld()
     })
     return <>
         <directionalLight
