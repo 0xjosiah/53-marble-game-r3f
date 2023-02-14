@@ -1,14 +1,28 @@
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { RigidBody } from "@react-three/rapier";
+import { RigidBody, useRapier } from "@react-three/rapier";
 import { useEffect, useRef } from "react";
 
 export default function Player({  }) {
-    const [ subscribeKeys, getKeys ] = useKeyboardControls()
     const player = useRef(null)
+    const [ subscribeKeys, getKeys ] = useKeyboardControls()
+    const { rapier, world } = useRapier()
+    const rapierWorld = world.raw()
 
     const jump = () => {
-        player.current.applyImpulse({ x: 0, y: 0.5, z: 0 })
+        // gets center of player obj
+        const origin = player.current.translation()
+        // need to move center down to be on bottom edge of player
+        origin.y -= 0.31
+        // cast a ray directly down thru floor
+        const direction = { x: 0, y: -1, z: 0 }
+        // fetches ray method from rapier lib
+        const ray = new rapier.Ray(origin, direction)
+        // uses cast ray method to report a 'hit', 10 is a max toi figure, true makes rapier consider all bodies as solid
+        // this toi test might help for falling logic TODO
+        const hit = rapierWorld.castRay(ray, 10, true)
+
+        if(hit.toi < 0.15) player.current.applyImpulse({ x: 0, y: 0.5, z: 0 })
     }
 
     useEffect(() => {
