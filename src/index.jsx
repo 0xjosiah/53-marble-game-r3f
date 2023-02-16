@@ -28,7 +28,7 @@ root.render(
             } }
         >
             <Experience />
-            <Interface />
         </Canvas>
+        <Interface />
     </KeyboardControls>
 )
