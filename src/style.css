@@ -58,33 +58,34 @@ body,
  */
  .controls
  {
-     position: absolute;
-     bottom: 10%;
-     left: 0;
-     width: 100%;
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
  }
  
  .controls .raw
  {
-     display: flex;
-     justify-content: center;
+    display: flex;
+    justify-content: center;
  }
  
  .controls .key
  {
-     width: 40px;
-     height: 40px;
-     margin: 4px;
-     border: 2px solid #ffffff;
-     background: #ffffff44;
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+    border-radius: 5px;
+    margin: 4px;
+    background: #ffffff44;
  }
  
  .controls .key.large
  {
-     width: 144px;
+    width: 144px;
  }
  
  .controls .key.active
  {
-     background: #ffffff99;
+    background: #ffffff99;
  }

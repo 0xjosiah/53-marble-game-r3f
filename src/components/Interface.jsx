@@ -1,4 +1,13 @@
+import { useKeyboardControls } from "@react-three/drei"
+import { useEffect, useRef } from "react"
+
 export default function Interface() {
+    const forward = useKeyboardControls((state) => state.forward)
+    const reverse = useKeyboardControls((state) => state.reverse)
+    const starboard = useKeyboardControls((state) => state.starboard)
+    const port = useKeyboardControls((state) => state.port)
+    const jump = useKeyboardControls((state) => state.jump)
+
     return (
         <div className="interface">
             {/* Time */}
@@ -10,15 +19,15 @@ export default function Interface() {
             {/* Controls */}
             <div className="controls">
                 <div className="raw">
-                    <div className="key"></div>
+                    <div className={ `key ${forward ? 'active' : ''}` }></div>
                 </div>
                 <div className="raw">
-                    <div className="key"></div>
-                    <div className="key"></div>
-                    <div className="key"></div>
+                    <div className={ `key ${port ? 'active' : ''}` }></div>
+                    <div className={ `key ${reverse ? 'active' : ''}` }></div>
+                    <div className={ `key ${starboard ? 'active' : ''}` }></div>
                 </div>
                 <div className="raw">
-                    <div className="key large"></div>
+                    <div className={`key large ${jump ? 'active' : ''}` }></div>
                 </div>
             </div>
         </div>
