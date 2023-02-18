@@ -39,9 +39,16 @@ export default function Player({  }) {
             }
         )
 
+        const unsubscribeAny = subscribeKeys(() => {
+            console.log('key down')
+        })
+
         // subscribeKeys returns a fn to unsub, this is helpful to reduce bugs
         // prevents a double sub if module happens to reload w/o full page reload
-        return () => unsubscribeJump()
+        return () => {
+            unsubscribeJump()
+            unsubscribeAny()
+        }
     }, [])
     
     useFrame((state, delta) => {
