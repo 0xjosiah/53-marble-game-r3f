@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber"
 import { RigidBody, useRapier } from "@react-three/rapier"
 import { useEffect, useRef, useState } from "react"
 import * as THREE from 'three'
+import useGame from "../stores/useGame"
 
 export default function Player({  }) {
     const player = useRef(null)
@@ -12,6 +13,8 @@ export default function Player({  }) {
 
     const [ smoothCamPos ] = useState(() => new THREE.Vector3(10, 10, 10)) // moves initial cam pos away from ball
     const [ smoothCamTarget ] = useState(() => new THREE.Vector3())
+
+    const start = useGame((state) => state.start)
 
     const jump = () => {
         // gets center of player obj
@@ -40,7 +43,7 @@ export default function Player({  }) {
         )
 
         const unsubscribeAny = subscribeKeys(() => {
-            console.log('key down')
+            start()
         })
 
         // subscribeKeys returns a fn to unsub, this is helpful to reduce bugs
