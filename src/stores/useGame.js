@@ -15,6 +15,7 @@ export default create((set) => ({
     },
 
     end: () => {
+        console.log('end')
         set(() => ({ phase: 'ended'}))
     }
 }))

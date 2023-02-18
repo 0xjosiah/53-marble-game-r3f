@@ -25,15 +25,15 @@ export default function Interface() {
             {/* Controls */}
             <div className="controls">
                 <div className="raw">
-                    <div className={ `key ${forward ? 'active' : ''}` }>W</div>
+                    <div className={ `key ${forward ? 'active' : ''}` }></div>
                 </div>
                 <div className="raw">
-                    <div className={ `key ${port ? 'active' : ''}` }>A</div>
-                    <div className={ `key ${reverse ? 'active' : ''}` }>S</div>
-                    <div className={ `key ${starboard ? 'active' : ''}` }>D</div>
+                    <div className={ `key ${port ? 'active' : ''}` }></div>
+                    <div className={ `key ${reverse ? 'active' : ''}` }></div>
+                    <div className={ `key ${starboard ? 'active' : ''}` }></div>
                 </div>
                 <div className="raw">
-                    <div className={`key large ${jump ? 'active' : ''}` }>Space</div>
+                    <div className={`key large ${jump ? 'active' : ''}` }></div>
                 </div>
             </div>
         </div>

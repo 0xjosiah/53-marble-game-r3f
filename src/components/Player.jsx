@@ -15,6 +15,8 @@ export default function Player({  }) {
     const [ smoothCamTarget ] = useState(() => new THREE.Vector3())
 
     const start = useGame((state) => state.start)
+    const end = useGame((state) => state.end)
+    const blocksCount = useGame((state) => state.blocksCount)
 
     const jump = () => {
         // gets center of player obj
@@ -114,6 +116,11 @@ export default function Player({  }) {
         state.camera.position.copy(smoothCamPos)
         // tells cam to look at declared target
         state.camera.lookAt(smoothCamTarget)
+
+        /**
+         * Phases
+         */
+        if(playerPos.z < -(blocksCount * 4 + 2)) end()
     })
 
     return (
