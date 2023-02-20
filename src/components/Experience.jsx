@@ -9,6 +9,7 @@ export default function Experience()
 {
     // if any of the below state values change, the full comp will rerender - best to select only the data you need
     const blocksCount = useGame((state) => state.blocksCount)
+    const blocksSeed = useGame((state) => state.blocksSeed)
     
     return <>
 

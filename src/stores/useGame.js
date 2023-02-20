@@ -2,7 +2,8 @@ import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
 export default create(subscribeWithSelector((set) => ({
-    blocksCount: 3,
+    blocksCount: 10,
+    /* ensures new layout on each restart */
     blocksSeed: 0,
 
     /* Time */
@@ -29,7 +30,7 @@ export default create(subscribeWithSelector((set) => ({
     restart: () => {
         set((state) => {
             if(state.phase === 'playing' || state.phase === 'ended') {
-                return { phase: 'ready' }
+                return { phase: 'ready', blocksSeed: Math.random() }
             }
             return {}
         })
