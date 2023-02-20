@@ -1,4 +1,4 @@
-import { Sphere, useGLTF } from '@react-three/drei'
+import { Float, Sphere, Text, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { CuboidCollider, MeshCollider, RigidBody, useSphericalJoint } from '@react-three/rapier'
 import { useMemo, useRef, useState } from 'react'
@@ -24,6 +24,13 @@ const wallMat = new THREE.MeshStandardMaterial({ color: 'slategrey' })
 function StartBlock({ position = [ 0, 0, 0 ] }) {
     return (
         <group position={ position }>
+            {/* Game title */}
+            <Float>
+                <Text
+                    scale={ .5 }
+                    position={[ 0, 1, -1 ]}
+                >Marble Obstacle Course</Text>
+            </Float>
 
             {/* floor */}
             <mesh
