@@ -1,5 +1,7 @@
 import { useKeyboardControls } from "@react-three/drei"
+import { addEffect, useFrame } from "@react-three/fiber"
 import { useEffect, useRef } from "react"
+import { EllipseCurve } from "three"
 import useGame from "../stores/useGame"
 
 export default function Interface() {
@@ -15,12 +17,38 @@ export default function Interface() {
     const startTime = useGame(state => state.startTime)
     const endTime = useGame(state => state.endTime)
 
+    const time = useRef()
+    useEffect(() => {
+        // can't use useFrame outside of canvas but r3f has addEffect
+        const unsubscribeEffect = addEffect(() => {
+            const state = useGame.getState()
+
+            let elapsedTime = 0
+            if(state.phase === 'playing') {
+                elapsedTime = Date.now() - state.startTime
+            }
+            if(state.phase === 'ended') {
+                elapsedTime = state.endTime - state.startTime
+            }
+
+            elapsedTime /= 1000
+            elapsedTime = elapsedTime.toFixed(2)
+            
+            // guard clause to prevent bug if addEffect runs prior to ref being ready (rare but can happen)
+            if(time.current) {
+                time.current.textContent = elapsedTime
+            }
+        })
+
+        return () => unsubscribeEffect()
+    }, [])
+
     return (
         <div className="interface">
             {/* Time */}
-            { phase === 'ended' && (
-                <div className="time">{ (endTime - startTime) / 1000 }</div>
-            )}
+            { phase !== 'ready' &&
+                <div ref={ time } className="time">0.00</div>
+            }
 
             {/* Restart */}
             { phase === 'ended' &&
