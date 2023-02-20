@@ -1,4 +1,4 @@
-import { Float, Sphere, Text, useGLTF } from '@react-three/drei'
+import { Float, MeshWobbleMaterial, Sphere, Text, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { CuboidCollider, MeshCollider, RigidBody, useSphericalJoint } from '@react-three/rapier'
 import { useMemo, useRef, useState } from 'react'
@@ -25,11 +25,25 @@ function StartBlock({ position = [ 0, 0, 0 ] }) {
     return (
         <group position={ position }>
             {/* Game title */}
-            <Float>
+            <Float
+                floatIntensity={ .5 }
+                rotationIntensity={ .5 }
+            >
                 <Text
                     scale={ .5 }
-                    position={[ 0, 1, -1 ]}
-                >Marble Obstacle Course</Text>
+                    position={[ 0.95, 0.85, -0.75 ]}
+                    font='./bebas-neue-v9-latin-regular.woff'
+                    maxWidth={ .25 }
+                    lineHeight={ .85 }
+                    textAlign='right'
+                    rotation-y={ -.25 }
+                >
+                    Marble Combine
+                    <MeshWobbleMaterial
+                    toneMapped={ false }
+
+                    />
+                </Text>
             </Float>
 
             {/* floor */}
