@@ -18,16 +18,18 @@ export default create((set) => ({
 
     restart: () => {
         set((state) => {
-            if(state.phase === 'playing')
+            if(state.phase === 'playing' || state.phase === 'ended') {
                 return { phase: 'ready' }
+            }
             return {}
         })
     },
 
     end: () => {
         set((state) => {
-            if(state.phase === 'playing') 
-                { phase: 'ended'}
+            if(state.phase === 'playing') {
+                return { phase: 'ended'}
+            }
             return {}
         })
     }
