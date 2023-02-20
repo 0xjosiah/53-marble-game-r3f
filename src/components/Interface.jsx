@@ -12,11 +12,15 @@ export default function Interface() {
     const restart = useGame(state => state.restart)
     // this returns a string denoting the phase of the game - ready, playing, or ended
     const phase = useGame(state => state.phase)
+    const startTime = useGame(state => state.startTime)
+    const endTime = useGame(state => state.endTime)
 
     return (
         <div className="interface">
             {/* Time */}
-            <div className="time">0.00</div>
+            { phase === 'ended' && (
+                <div className="time">{ (endTime - startTime) / 1000 }</div>
+            )}
 
             {/* Restart */}
             { phase === 'ended' &&
