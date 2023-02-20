@@ -362,7 +362,11 @@ function Bounds({ length = 1 }) {
     )
 }
 
-function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock ] }) {
+function Level({
+    count = 5,
+    types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock ],
+    seed = 0
+}) {
     // this decides the number of trap blocks
     // const count = 5
 
@@ -378,7 +382,7 @@ function Level({ count = 5, types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingD
         }
 
         return blocks
-    }, [ count, types ])
+    }, [ count, types, seed ])
     
     return (
         <>
