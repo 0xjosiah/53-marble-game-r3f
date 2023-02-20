@@ -7,14 +7,28 @@ export default create((set) => ({
     phase: 'ready',
     
     start: () => {
-        set(() => ({ phase: 'playing' }))
+        set((state) => {
+            // if phase is already playing, don't want to update anything; this prevents start from firing over and over
+            if(state.phase === 'ready')
+                return { phase: 'playing' }
+            // must return something from this fn    
+            return {}
+        })
     },
 
     restart: () => {
-        set(() => ({ phase: 'ready' }))
+        set((state) => {
+            if(state.phase === 'playing')
+                return { phase: 'ready' }
+            return {}
+        })
     },
 
     end: () => {
-        set(() => ({ phase: 'ended'}))
+        set((state) => {
+            if(state.phase === 'playing') 
+                { phase: 'ended'}
+            return {}
+        })
     }
 }))
