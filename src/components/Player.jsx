@@ -35,7 +35,25 @@ export default function Player({  }) {
         if(hit.toi < 0.15) player.current.applyImpulse({ x: 0, y: 0.5, z: 0 })
     }
 
+    const reset = () => {
+        // returns player of origin
+        player.current.setTranslation({ x: 0, y: 1, z: 0 })
+        // resets linear velocity
+        player.current.setLinvel({ x: 0, y: 0, z: 0 })
+        // resets angular velocity
+        player.current.setAngvel({ x: 0, y: 0, z: 0 })
+    }
+
     useEffect(() => {
+        const unsubscribeReset = useGame.subscribe(
+            (state) => state.phase,
+            (phase) => {
+                if(phase === 'ready') {
+                    reset()
+                }
+            }
+        )
+
         const unsubscribeJump = subscribeKeys(
             // selector fn, indicates what you want to listen to
             (state) => state.jump,
@@ -54,6 +72,7 @@ export default function Player({  }) {
         return () => {
             unsubscribeJump()
             unsubscribeAny()
+            unsubscribeReset()
         }
     }, [])
     

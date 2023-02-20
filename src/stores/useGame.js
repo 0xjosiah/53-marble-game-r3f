@@ -1,6 +1,7 @@
 import { create } from 'zustand'
+import { subscribeWithSelector } from 'zustand/middleware'
 
-export default create((set) => ({
+export default create(subscribeWithSelector((set) => ({
     blocksCount: 3,
 
     /* Phases */
@@ -33,4 +34,4 @@ export default create((set) => ({
             return {}
         })
     }
-}))
+})))
