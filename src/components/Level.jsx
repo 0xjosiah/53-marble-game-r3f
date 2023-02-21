@@ -12,10 +12,15 @@ const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
 const sphereGeometry = new THREE.SphereGeometry(.5, 16, 32)
 
 // Materials for scene
-const floor1Mat = new THREE.MeshStandardMaterial({ color: 'limegreen' })
-const floor2Mat = new THREE.MeshStandardMaterial({ color: 'greenyellow' })
-const obstacleMat = new THREE.MeshStandardMaterial({ color: 'orangered' })
-const wallMat = new THREE.MeshStandardMaterial({ color: 'slategrey' })
+// const floor1Mat = new THREE.MeshStandardMaterial({ color: 'limegreen' })
+// const floor2Mat = new THREE.MeshStandardMaterial({ color: 'greenyellow' })
+// const obstacleMat = new THREE.MeshStandardMaterial({ color: 'orangered' })
+// const wallMat = new THREE.MeshStandardMaterial({ color: 'slategrey' })
+const floor1Mat = new THREE.MeshStandardMaterial({ color: '#111111', metalness: 0, roughness: 0 })
+const floor2Mat = new THREE.MeshStandardMaterial({ color: '#222222', metalness: 0, roughness: 0 })
+const obstacleMat = new THREE.MeshStandardMaterial({ color: '#ff0000', metalness: 0, roughness: 1 })
+const wallMat = new THREE.MeshStandardMaterial({ color: '#887777', metalness: 0, roughness: 0 })
+
 
 /** 
  * this is the initial start block of the game
