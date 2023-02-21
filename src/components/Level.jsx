@@ -40,8 +40,7 @@ function StartBlock({ position = [ 0, 0, 0 ] }) {
                 >
                     Marble Combine
                     <MeshWobbleMaterial
-                    toneMapped={ false }
-
+                        toneMapped={ false }
                     />
                 </Text>
             </Float>
