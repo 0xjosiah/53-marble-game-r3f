@@ -1,6 +1,7 @@
 // import { OrbitControls } from '@react-three/drei'
 import { Debug, Physics } from '@react-three/rapier'
 import useGame from '../stores/useGame.js'
+import Effects from './Effects.jsx'
 import { Level } from './Level.jsx'
 import Lights from './Lights.jsx'
 import Player from './Player.jsx'
@@ -19,10 +20,11 @@ export default function Experience()
 
         <Physics>
             {/* <Debug /> */}
-            <Lights />
             <Level count={ blocksCount }/>
             <Player />
         </Physics>
 
+        <Lights />
+        <Effects />
     </>
 }
