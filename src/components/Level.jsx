@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { CuboidCollider, MeshCollider, RigidBody, useSphericalJoint } from '@react-three/rapier'
 import { useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
+import StartBlock from './blocks/StartBlock'
 
 // this is required to normalize colors if created outside r3f
 THREE.ColorManagement.legacyMode = false
@@ -26,42 +27,42 @@ const wallMat = new THREE.MeshStandardMaterial({ color: 'slategrey' })
  * this is the initial start block of the game
  * @param position = vec3
 */
-function StartBlock({ position = [ 0, 0, 0 ] }) {
-    return (
-        <group position={ position }>
-            {/* Game title */}
-            <Float
-                floatIntensity={ .5 }
-                rotationIntensity={ .5 }
-            >
-                <Text
-                    scale={ .5 }
-                    position={[ 0.95, 0.85, -0.75 ]}
-                    font='./bebas-neue-v9-latin-regular.woff'
-                    maxWidth={ .25 }
-                    lineHeight={ .85 }
-                    textAlign='right'
-                    rotation-y={ -.25 }
-                >
-                    Marble Combine
-                    <MeshWobbleMaterial
-                        toneMapped={ false }
-                    />
-                </Text>
-            </Float>
+// function StartBlock({ position = [ 0, 0, 0 ] }) {
+//     return (
+//         <group position={ position }>
+//             {/* Game title */}
+//             <Float
+//                 floatIntensity={ .5 }
+//                 rotationIntensity={ .5 }
+//             >
+//                 <Text
+//                     scale={ .5 }
+//                     position={[ 0.95, 0.85, -0.75 ]}
+//                     font='./bebas-neue-v9-latin-regular.woff'
+//                     maxWidth={ .25 }
+//                     lineHeight={ .85 }
+//                     textAlign='right'
+//                     rotation-y={ -.25 }
+//                 >
+//                     Marble Combine
+//                     <MeshWobbleMaterial
+//                         toneMapped={ false }
+//                     />
+//                 </Text>
+//             </Float>
 
-            {/* floor */}
-            <mesh
-                geometry={ boxGeometry }
-                material={ floor1Mat }
-                position={[ 0, -0.1, 0 ]}
-                scale={[ 4, 0.2, 4 ]}
-                receiveShadow
-            />
+//             {/* floor */}
+//             <mesh
+//                 geometry={ boxGeometry }
+//                 material={ floor1Mat }
+//                 position={[ 0, -0.1, 0 ]}
+//                 scale={[ 4, 0.2, 4 ]}
+//                 receiveShadow
+//             />
             
-        </group>
-    )
-}
+//         </group>
+//     )
+// }
 
 /**
  * Trap block with spinner
