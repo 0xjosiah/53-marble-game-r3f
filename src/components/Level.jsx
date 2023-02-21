@@ -302,6 +302,25 @@ function EndBlock({ position = [ 0, 0, 0 ] }) {
 
     return (
         <group position={ position }>
+            {/* Finish title */}
+            <Text
+                scale={ .5 }
+                position={[ 0, 1.75, 1.5 ]}
+                font='./bebas-neue-v9-latin-regular.woff'
+                maxWidth={ .25 }
+                lineHeight={ .85 }
+                textAlign='right'
+                rotation-y={ -.25 }
+            >
+                Finish
+                <MeshWobbleMaterial
+                    speed={ .75 }
+                    factor={ .75 }
+                    toneMapped={ false }
+                    color='red'
+                />
+            </Text>
+
             {/* reward object */}
             <RigidBody
                 type='fixed'
