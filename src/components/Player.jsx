@@ -166,8 +166,10 @@ export default function Player({  }) {
             angularDamping={ 0.5 }
         >
             <mesh castShadow>
-                <icosahedronGeometry args={[ 0.3, 1 ]} />
-                <meshStandardMaterial flatShading color={'mediumpurple'} />
+                {/* <icosahedronGeometry args={[ 0.3, 1 ]} /> */}
+                {/* <meshStandardMaterial flatShading color={'mediumpurple'} /> */}
+                <sphereGeometry args={[ .5, .5 ]} />
+                <marbleMaterial />
             </mesh>
         </RigidBody>
     )
