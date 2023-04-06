@@ -2,7 +2,7 @@ import { DepthOfField, EffectComposer, SSR } from '@react-three/postprocessing'
 
 export default function Effects() {
     return (
-        <EffectComposer>
+        <EffectComposer multisampling={5}>
             <SSR
                 intensity={ 0.45 }
                 exponent={ 1 }

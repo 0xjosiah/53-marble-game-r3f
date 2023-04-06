@@ -55,7 +55,7 @@ float cnoise(vec2 P){
   vec2 fade_xy = fade(Pf.xy);
   vec2 n_x = mix(vec2(n00, n01), vec2(n10, n11), fade_xy.x);
   float n_xy = mix(n_x.x, n_x.y, fade_xy.y);
-  return 2.3 * n_xy;  //* uTime * cos(uTime);
+  return 0.75 * n_xy;  //* uTime * cos(uTime);
 }
 
 void main()
