@@ -1,9 +1,18 @@
-import { useKeyboardControls } from "@react-three/drei"
-import { useFrame } from "@react-three/fiber"
+import { shaderMaterial, useKeyboardControls } from "@react-three/drei"
+import { extend, useFrame } from "@react-three/fiber"
 import { RigidBody, useRapier } from "@react-three/rapier"
 import { useEffect, useRef, useState } from "react"
+import vertex from "../shaders/marbles/multiColorTopo/vert.glsl"
+import fragment from "../shaders/marbles/multiColorTopo/frag.glsl"
 import * as THREE from 'three'
 import useGame from "../stores/useGame"
+
+const MarbleMaterial = shaderMaterial({
+    vertex,
+    fragment
+})
+
+extend({ MarbleMaterial })
 
 export default function Player({  }) {
     const player = useRef(null)
