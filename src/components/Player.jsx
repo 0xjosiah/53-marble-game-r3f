@@ -1,4 +1,4 @@
-import { Sphere, shaderMaterial, useKeyboardControls } from "@react-three/drei"
+import { shaderMaterial, useKeyboardControls } from "@react-three/drei"
 import { extend, useFrame } from "@react-three/fiber"
 import { RigidBody, useRapier } from "@react-three/rapier"
 import { useEffect, useRef, useState } from "react"
