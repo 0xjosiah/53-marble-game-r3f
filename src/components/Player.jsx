@@ -1,15 +1,15 @@
-import { shaderMaterial, useKeyboardControls } from "@react-three/drei"
+import { Sphere, shaderMaterial, useKeyboardControls } from "@react-three/drei"
 import { extend, useFrame } from "@react-three/fiber"
 import { RigidBody, useRapier } from "@react-three/rapier"
 import { useEffect, useRef, useState } from "react"
-import vertex from "../shaders/marbles/multiColorTopo/vert.glsl"
-import fragment from "../shaders/marbles/multiColorTopo/frag.glsl"
+import vertexShader from "../shaders/marbles/multiColorTopo/vert.glsl"
+import fragmentShader from "../shaders/marbles/multiColorTopo/frag.glsl"
 import * as THREE from 'three'
 import useGame from "../stores/useGame"
 
 const MarbleMaterial = shaderMaterial({
-    vertex,
-    fragment
+    vertexShader,
+    fragmentShader
 })
 
 extend({ MarbleMaterial })
@@ -168,7 +168,7 @@ export default function Player({  }) {
             <mesh castShadow>
                 {/* <icosahedronGeometry args={[ 0.3, 1 ]} /> */}
                 {/* <meshStandardMaterial flatShading color={'mediumpurple'} /> */}
-                <sphereGeometry args={[ .5, .5 ]} />
+                <sphereGeometry args={[ .3, 32, 16 ]} />
                 <marbleMaterial />
             </mesh>
         </RigidBody>
