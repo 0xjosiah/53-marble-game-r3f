@@ -5,6 +5,7 @@ import Effects from './Effects.jsx'
 import { Level } from './Level.jsx'
 import Lights from './Lights.jsx'
 import Player from './Player.jsx'
+import { Perf } from 'r3f-perf'
 
 export default function Experience()
 {
@@ -18,6 +19,7 @@ export default function Experience()
 
         <color args={[ '#bdedfc' ]} attach='background' />
 
+        <Perf />
         <Physics>
             {/* <Debug /> */}
             <Level count={ blocksCount }/>
