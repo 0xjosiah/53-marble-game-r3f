@@ -1,5 +1,6 @@
 import * as THREE from "three"
 
+// this is required to normalize colors if created outside r3f
 THREE.ColorManagement.legacyMode = false
 
 // Materials for scene
