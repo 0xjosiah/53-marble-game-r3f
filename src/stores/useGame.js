@@ -6,12 +6,12 @@ export default create(subscribeWithSelector((set) => ({
     /* ensures new layout on each restart */
     blocksSeed: 0,
 
-    /* Time */
+    /* Time - used for timing player */
     startTime: 0,
     endTime: 0,
 
-    /* Phases */
-    phase: 'ready',
+    /* Phases of game*/
+    phase: 'ready', // 'playing', 'ended', TODO add 'pause'
     
     start: () => {
         set((state) => {
