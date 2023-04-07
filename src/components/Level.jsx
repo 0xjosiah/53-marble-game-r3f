@@ -443,4 +443,4 @@ function Level({
     )
 }
 
-export { Level, SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock, EndBlock }
+export { Level, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock, EndBlock }
