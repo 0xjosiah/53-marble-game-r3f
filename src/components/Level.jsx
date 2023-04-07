@@ -6,6 +6,7 @@ import * as THREE from 'three'
 import StartBlock from './blocks/StartBlock'
 import SpinnerTrapBlock from './blocks/SpinnerTrapBlock'
 import LimboTrapBlock from './blocks/LimboTrapBlock'
+import SlidingDoorTrapBlock from './blocks/SlidingDoorTrapBlock'
 
 // this is required to normalize colors if created outside r3f
 THREE.ColorManagement.legacyMode = false
@@ -176,55 +177,55 @@ const wallMat = new THREE.MeshStandardMaterial({ color: 'slategrey' })
  * Trap block with sliding door style obstacle
  * @param position = vec3
  */
-function SlidingDoorTrapBlock({ position = [ 0, 0, 0 ] }) {
-    const obstacle = useRef(null)
+// function SlidingDoorTrapBlock({ position = [ 0, 0, 0 ] }) {
+//     const obstacle = useRef(null)
 
-    // creates constant random value for each instance of this component
-    const [ timeOffset ] = useState(() => (Math.random() * Math.PI * 2))
+//     // creates constant random value for each instance of this component
+//     const [ timeOffset ] = useState(() => (Math.random() * Math.PI * 2))
 
-    // this creates rotation for the rigid body of spinner
-    useFrame((state) => {
-        const time = state.clock.getElapsedTime() + timeOffset
+//     // this creates rotation for the rigid body of spinner
+//     useFrame((state) => {
+//         const time = state.clock.getElapsedTime() + timeOffset
 
-        // ensures limbo trap stays consistent with component position
-        const x = position[0] + (Math.sin(time) * 1.25)
-        const y = position[1] + .75
-        const z = position[2]
+//         // ensures limbo trap stays consistent with component position
+//         const x = position[0] + (Math.sin(time) * 1.25)
+//         const y = position[1] + .75
+//         const z = position[2]
 
-        obstacle.current.setNextKinematicTranslation({ x, y, z })
-    })
+//         obstacle.current.setNextKinematicTranslation({ x, y, z })
+//     })
 
-    return (
-        <group position={ position }>
+//     return (
+//         <group position={ position }>
             
-            {/* floor */}
-            <mesh
-                geometry={ boxGeometry }
-                material={ floor2Mat }
-                position={[ 0, -0.1, 0 ]}
-                scale={[ 4, 0.2, 4]}
-                receiveShadow
-            />
+//             {/* floor */}
+//             <mesh
+//                 geometry={ boxGeometry }
+//                 material={ floor2Mat }
+//                 position={[ 0, -0.1, 0 ]}
+//                 scale={[ 4, 0.2, 4]}
+//                 receiveShadow
+//             />
 
-            {/* obstacle */}
-            <RigidBody
-                ref={ obstacle }
-                type='kinematicPosition'
-                position={[ 0, .3, 0 ]}
-                restitution={ 0.2 }
-                friction={ 0 }
-            >
-                <mesh
-                    geometry={ boxGeometry }
-                    material={ obstacleMat }
-                    scale={[ 1.5, 1.5, .3 ]}
-                    castShadow
-                    receiveShadow
-                />
-            </RigidBody>
-        </group>
-    )
-}
+//             {/* obstacle */}
+//             <RigidBody
+//                 ref={ obstacle }
+//                 type='kinematicPosition'
+//                 position={[ 0, .3, 0 ]}
+//                 restitution={ 0.2 }
+//                 friction={ 0 }
+//             >
+//                 <mesh
+//                     geometry={ boxGeometry }
+//                     material={ obstacleMat }
+//                     scale={[ 1.5, 1.5, .3 ]}
+//                     castShadow
+//                     receiveShadow
+//                 />
+//             </RigidBody>
+//         </group>
+//     )
+// }
 
 /**
  * Trap block with axe style obstacle
@@ -444,4 +445,4 @@ function Level({
     )
 }
 
-export { Level, SlidingDoorTrapBlock, AxeTrapBlock, EndBlock }
+export { Level, AxeTrapBlock, EndBlock }
