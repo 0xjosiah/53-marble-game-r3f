@@ -9,6 +9,7 @@ import LimboTrapBlock from './blocks/LimboTrapBlock'
 import SlidingDoorTrapBlock from './blocks/SlidingDoorTrapBlock'
 import AxeTrapBlock from './blocks/AxeTrapBlock'
 import EndBlock from './blocks/EndBlock'
+import Bounds from './blocks/Bounds'
 
 // this is required to normalize colors if created outside r3f
 THREE.ColorManagement.legacyMode = false
@@ -363,54 +364,54 @@ const wallMat = new THREE.MeshStandardMaterial({ color: 'slategrey' })
 /**
  * these are walls for the whole level
  */
-function Bounds({ length = 1 }) {
-    return (
-        <>
-            <RigidBody
-                type='fixed'
-                restitution={ 0.2 }
-                friction={ 0 }
-            >
-                {/* right wall */}
-                <mesh
-                    geometry={ boxGeometry }
-                    material={ wallMat }
-                    scale={[ .3, 2, length * 4 ]}
-                    position={[ 2.15, 0.8, -(length * 2) + 2 ]}
-                    castShadow
-                />
+// function Bounds({ length = 1 }) {
+//     return (
+//         <>
+//             <RigidBody
+//                 type='fixed'
+//                 restitution={ 0.2 }
+//                 friction={ 0 }
+//             >
+//                 {/* right wall */}
+//                 <mesh
+//                     geometry={ boxGeometry }
+//                     material={ wallMat }
+//                     scale={[ .3, 2, length * 4 ]}
+//                     position={[ 2.15, 0.8, -(length * 2) + 2 ]}
+//                     castShadow
+//                 />
 
-                {/* left wall */}
-                <mesh
-                    geometry={ boxGeometry }
-                    material={ wallMat }
-                    scale={[ .3, 2, length * 4 ]}
-                    position={[ -2.15, 0.8, -(length * 2) + 2 ]}
-                    // no castshadow due to sun pos
-                    receiveShadow
-                />
+//                 {/* left wall */}
+//                 <mesh
+//                     geometry={ boxGeometry }
+//                     material={ wallMat }
+//                     scale={[ .3, 2, length * 4 ]}
+//                     position={[ -2.15, 0.8, -(length * 2) + 2 ]}
+//                     // no castshadow due to sun pos
+//                     receiveShadow
+//                 />
 
-                {/* back wall */}
-                <mesh
-                    geometry={ boxGeometry }
-                    material={ wallMat }
-                    scale={[ 4.6, 2, .3 ]}
-                    position={[ 0, 0.8, -(length * 4) + 1.85 ]}
-                    // no castshadow due to sun pos
-                    receiveShadow
-                />
+//                 {/* back wall */}
+//                 <mesh
+//                     geometry={ boxGeometry }
+//                     material={ wallMat }
+//                     scale={[ 4.6, 2, .3 ]}
+//                     position={[ 0, 0.8, -(length * 4) + 1.85 ]}
+//                     // no castshadow due to sun pos
+//                     receiveShadow
+//                 />
 
-                {/* floor */}
-                <CuboidCollider
-                    args={[ 2, .1, 2 * length ]}
-                    position={[ 0, -0.1, -(length * 2) + 2 ]}
-                    restitution={ 0.2 }
-                    friction={ 1 } // don't want infinite rotation, movement on floor
-                />
-            </RigidBody>
-        </>
-    )
-}
+//                 {/* floor */}
+//                 <CuboidCollider
+//                     args={[ 2, .1, 2 * length ]}
+//                     position={[ 0, -0.1, -(length * 2) + 2 ]}
+//                     restitution={ 0.2 }
+//                     friction={ 1 } // don't want infinite rotation, movement on floor
+//                 />
+//             </RigidBody>
+//         </>
+//     )
+// }
 
 function Level({
     count = 5,
