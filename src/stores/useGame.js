@@ -2,8 +2,9 @@ import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
 export default create(subscribeWithSelector((set) => ({
+    /* Trap block info */
     blocksCount: 10,
-    /* ensures new layout on each restart */
+    /* ensures new layout on each restart, random seed generated on level start */
     blocksSeed: 0,
 
     /* Time - used for timing player */
