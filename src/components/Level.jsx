@@ -10,7 +10,8 @@ import Bounds from './blocks/Bounds'
 function Level({
     count = 5, // this decides the number of trap blocks
     types = [ SpinnerTrapBlock, LimboTrapBlock, SlidingDoorTrapBlock, AxeTrapBlock ], // trap block types available for use
-    seed = 0
+    seed = 0,
+    isEasy = true
 }) {
     
     const blocks = useMemo(() => {
@@ -32,7 +33,10 @@ function Level({
             { blocks.map((Block, index) => <Block key={ index } position={[ 0, 0, -(index + 1) * 4 ]} />) }
 
             <EndBlock position={[ 0, 0, -(count + 1) * 4 ]} />
-            <Bounds length={ count + 2 } />
+
+            {isEasy &&
+                <Bounds length={ count + 2 } />
+            }
         </>
     )
 }
