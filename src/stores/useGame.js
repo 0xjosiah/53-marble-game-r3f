@@ -47,5 +47,8 @@ export default create(subscribeWithSelector((set) => ({
             }
             return {}
         })
-    }
+    },
+
+    /* Difficult setting */
+    difficult: 'easy'
 })))
