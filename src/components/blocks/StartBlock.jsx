@@ -1,14 +1,13 @@
 import { Float, MeshWobbleMaterial, Text } from '@react-three/drei'
-import * as THREE from 'three'
+import { startEndFloorMaterial } from '../../meshSources/materials'
+import { boxGeometry } from '../../meshSources/geometries'
 
 /** 
  * this is the initial start block of the game
  * @param position = vec3
 */
-const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
-const floor1Mat = new THREE.MeshStandardMaterial({ color: 'limegreen' })
 
-export default function StartBlock({ position = [ 0, 0, 0 ], geometry = boxGeometry, material = floor1Mat }) {
+export default function StartBlock({ position = [ 0, 0, 0 ] }) {
     return (
         <group position={ position }>
             {/* Game title */}
@@ -34,8 +33,8 @@ export default function StartBlock({ position = [ 0, 0, 0 ], geometry = boxGeome
 
             {/* floor */}
             <mesh
-                geometry={ geometry }
-                material={ material }
+                geometry={ boxGeometry }
+                material={ startEndFloorMaterial }
                 position={[ 0, -0.1, 0 ]}
                 scale={[ 4, 0.2, 4 ]}
                 receiveShadow

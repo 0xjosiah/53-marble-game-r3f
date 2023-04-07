@@ -262,13 +262,13 @@ function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
                 receiveShadow
             />
             
-            <RigidBody ref={anchor} type='kinematicPosition' position={[0, 3, 0]} >
+            <RigidBody ref={anchor} type='kinematicPosition' position={[0, 3, 0]} />
                 {/* <mesh
                     geometry={ sphereGeometry }
                     material={ obstacleMat }
                     scale={[ .1, .1, .1 ]}
                 /> */}
-            </RigidBody>
+            {/* </RigidBody> */}
             <RigidBody
                 ref={box}
                 type='kinematicPosition'
