@@ -7,6 +7,7 @@ import StartBlock from './blocks/StartBlock'
 import SpinnerTrapBlock from './blocks/SpinnerTrapBlock'
 import LimboTrapBlock from './blocks/LimboTrapBlock'
 import SlidingDoorTrapBlock from './blocks/SlidingDoorTrapBlock'
+import AxeTrapBlock from './blocks/AxeTrapBlock'
 
 // this is required to normalize colors if created outside r3f
 THREE.ColorManagement.legacyMode = false
@@ -231,67 +232,67 @@ const wallMat = new THREE.MeshStandardMaterial({ color: 'slategrey' })
  * Trap block with axe style obstacle
  * @param position = vec3
  */
-function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
-    const obstacle = useRef(null)
+// function AxeTrapBlock({ position = [ 0, 0, 0 ] }) {
+//     const obstacle = useRef(null)
 
-    // creates constant random value for each instance of this component
-    const [ timeOffset ] = useState(() => (Math.random() * Math.PI * 2))
+//     // creates constant random value for each instance of this component
+//     const [ timeOffset ] = useState(() => (Math.random() * Math.PI * 2))
 
-    // this creates rotation for the rigid body of spinner
-    useFrame((state) => {
-        const time = state.clock.getElapsedTime() + timeOffset
+//     // this creates rotation for the rigid body of spinner
+//     useFrame((state) => {
+//         const time = state.clock.getElapsedTime() + timeOffset
 
-        box.current.setNextKinematicRotation(
-            new THREE.Quaternion(0, 0, (Math.sin(time)))
-          )
-    })
+//         box.current.setNextKinematicRotation(
+//             new THREE.Quaternion(0, 0, (Math.sin(time)))
+//           )
+//     })
 
-    const anchor = useRef(null);
-    const box = useRef(null);
+//     const anchor = useRef(null);
+//     const box = useRef(null);
 
-    // useSphericalJoint(anchor, box, [
-    //     [0, 0, 0],
-    //     [0, 1.25, 0]
-    // ])
+//     // useSphericalJoint(anchor, box, [
+//     //     [0, 0, 0],
+//     //     [0, 1.25, 0]
+//     // ])
 
-    return (
-        <group position={ position }>
-            {/* floor */}
-            <mesh
-                geometry={ boxGeometry }
-                material={ floor2Mat }
-                position={[ 0, -0.1, 0 ]}
-                scale={[ 4, 0.2, 4]}
-                receiveShadow
-            />
+//     return (
+//         <group position={ position }>
+//             {/* floor */}
+//             <mesh
+//                 geometry={ boxGeometry }
+//                 material={ floor2Mat }
+//                 position={[ 0, -0.1, 0 ]}
+//                 scale={[ 4, 0.2, 4]}
+//                 receiveShadow
+//             />
             
-            <RigidBody ref={anchor} type='kinematicPosition' position={[0, 3, 0]} />
-                {/* <mesh
-                    geometry={ sphereGeometry }
-                    material={ obstacleMat }
-                    scale={[ .1, .1, .1 ]}
-                /> */}
-            {/* </RigidBody> */}
-            <RigidBody
-                ref={box}
-                type='kinematicPosition'
-                position={[0, 1.5, 0]}
-            >
-                <mesh
-                    geometry={ boxGeometry }
-                    material={ obstacleMat }
-                    scale={[ .2, 2.5, .2 ]}
-                />
-                <mesh
-                    geometry={ boxGeometry }
-                    material={ obstacleMat }
-                    scale={[ 1.5, .5, .2 ]}
-                    position={[ 0, -1, 0 ]}
-                />
-            </RigidBody>
-        </group>
-    )
-}
+//             <RigidBody ref={anchor} type='kinematicPosition' position={[0, 3, 0]} />
+//                 {/* <mesh
+//                     geometry={ sphereGeometry }
+//                     material={ obstacleMat }
+//                     scale={[ .1, .1, .1 ]}
+//                 /> */}
+//             {/* </RigidBody> */}
+//             <RigidBody
+//                 ref={box}
+//                 type='kinematicPosition'
+//                 position={[0, 1.5, 0]}
+//             >
+//                 <mesh
+//                     geometry={ boxGeometry }
+//                     material={ obstacleMat }
+//                     scale={[ .2, 2.5, .2 ]}
+//                 />
+//                 <mesh
+//                     geometry={ boxGeometry }
+//                     material={ obstacleMat }
+//                     scale={[ 1.5, .5, .2 ]}
+//                     position={[ 0, -1, 0 ]}
+//                 />
+//             </RigidBody>
+//         </group>
+//     )
+// }
 
 /** 
  * this is the initial start block of the game
@@ -445,4 +446,4 @@ function Level({
     )
 }
 
-export { Level, AxeTrapBlock, EndBlock }
+export { Level, EndBlock }
