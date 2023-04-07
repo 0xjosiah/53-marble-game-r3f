@@ -8,6 +8,7 @@ import SpinnerTrapBlock from './blocks/SpinnerTrapBlock'
 import LimboTrapBlock from './blocks/LimboTrapBlock'
 import SlidingDoorTrapBlock from './blocks/SlidingDoorTrapBlock'
 import AxeTrapBlock from './blocks/AxeTrapBlock'
+import EndBlock from './blocks/EndBlock'
 
 // this is required to normalize colors if created outside r3f
 THREE.ColorManagement.legacyMode = false
@@ -298,66 +299,66 @@ const wallMat = new THREE.MeshStandardMaterial({ color: 'slategrey' })
  * this is the initial start block of the game
  * @param position = vec3
 */
-function EndBlock({ position = [ 0, 0, 0 ] }) {
-    const { scene } = useGLTF('./hamburger.glb')
-    scene.children.forEach(mesh => mesh.castShadow = true)
+// function EndBlock({ position = [ 0, 0, 0 ] }) {
+//     const { scene } = useGLTF('./hamburger.glb')
+//     scene.children.forEach(mesh => mesh.castShadow = true)
 
-    const hamburger = useRef(null)
+//     const hamburger = useRef(null)
 
-    useFrame((state, delta) => {
-        // const time = state.clock.getElapsedTime()
-        // hamburger.current.rotation.y += delta
-    })
+//     useFrame((state, delta) => {
+//         // const time = state.clock.getElapsedTime()
+//         // hamburger.current.rotation.y += delta
+//     })
 
-    return (
-        <group position={ position }>
-            {/* Finish title */}
-            <Text
-                scale={ .5 }
-                position={[ 0, 1.75, 1.5 ]}
-                font='./bebas-neue-v9-latin-regular.woff'
-                maxWidth={ .25 }
-                lineHeight={ .85 }
-                textAlign='right'
-                rotation-y={ -.25 }
-            >
-                Finish
-                <MeshWobbleMaterial
-                    speed={ .75 }
-                    factor={ .75 }
-                    toneMapped={ false }
-                    color='red'
-                />
-            </Text>
+//     return (
+//         <group position={ position }>
+//             {/* Finish title */}
+//             <Text
+//                 scale={ .5 }
+//                 position={[ 0, 1.75, 1.5 ]}
+//                 font='./bebas-neue-v9-latin-regular.woff'
+//                 maxWidth={ .25 }
+//                 lineHeight={ .85 }
+//                 textAlign='right'
+//                 rotation-y={ -.25 }
+//             >
+//                 Finish
+//                 <MeshWobbleMaterial
+//                     speed={ .75 }
+//                     factor={ .75 }
+//                     toneMapped={ false }
+//                     color='red'
+//                 />
+//             </Text>
 
-            {/* reward object */}
-            <RigidBody
-                type='fixed'
-                colliders='hull'
-                position={[ 0, 0.25, 0 ]}
-                restitution={ 0.2 }
-                friction={ 0 }
-            >
-                <primitive
-                    ref={ hamburger }
-                    object={ scene }
-                    position={[ 0, 0, 0 ]}
-                    scale={ .2 }
-                />
-            </RigidBody>
+//             {/* reward object */}
+//             <RigidBody
+//                 type='fixed'
+//                 colliders='hull'
+//                 position={[ 0, 0.25, 0 ]}
+//                 restitution={ 0.2 }
+//                 friction={ 0 }
+//             >
+//                 <primitive
+//                     ref={ hamburger }
+//                     object={ scene }
+//                     position={[ 0, 0, 0 ]}
+//                     scale={ .2 }
+//                 />
+//             </RigidBody>
 
-            {/* floor */}
-            <mesh
-                geometry={ boxGeometry }
-                material={ floor1Mat }
-                scale={[ 4, 0.2, 4 ]}
-                position={[ 0, 0, 0 ]}
-                receiveShadow
-            />
+//             {/* floor */}
+//             <mesh
+//                 geometry={ boxGeometry }
+//                 material={ floor1Mat }
+//                 scale={[ 4, 0.2, 4 ]}
+//                 position={[ 0, 0, 0 ]}
+//                 receiveShadow
+//             />
             
-        </group>
-    )
-}
+//         </group>
+//     )
+// }
 
 /**
  * these are walls for the whole level
@@ -446,4 +447,4 @@ function Level({
     )
 }
 
-export { Level, EndBlock }
+export { Level }
