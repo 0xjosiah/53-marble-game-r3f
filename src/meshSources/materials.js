@@ -1,5 +1,7 @@
 import * as THREE from "three"
 
+THREE.ColorManagement.legacyMode = false
+
 // Materials for scene
 const startEndFloorMaterial = new THREE.MeshStandardMaterial({ color: 'limegreen' })
 const obstacleFloorMaterial = new THREE.MeshStandardMaterial({ color: 'greenyellow' })
